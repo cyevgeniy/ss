@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script type="text/javascript" src="index.js"></script>
+		<script type="text/javascript">
+			const counter = createSignal(0)
+
+			function onClick() {
+				counter(v => ++v)
+			}
+
+			window.addEventListener('load', () => {
+				const btn = document.querySelector('button')
+				// Display initial counter's value in the button
+				btn.innerText = counter()
+
+				// On each click, increment counter value
+				btn.addEventListener('click', onClick)
+
+				// Every time when the counter was changed,
+				// update button text with the new value
+				on(counter, (newValue) => {
+					btn.innerText = newValue
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<button> </button>
+	</body>
+</html>
